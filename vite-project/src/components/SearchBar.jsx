@@ -8,8 +8,16 @@ export const SearchBar = ({ onSearch, compact = false }) => {
   const [localFilters, setLocalFilters] = useState(searchFilters);
 
   const handleSearch = () => {
-    // Update global filters and trigger search
+    // Prevent search if location is empty
+    if (!localFilters.location.trim()) {
+      alert('Please enter a location to search hotels.');
+      return;
+    }
+
+    // Update global filters
     updateSearchFilters(localFilters);
+
+    // Trigger search callback with filters
     if (onSearch) onSearch(localFilters);
   };
 
@@ -17,7 +25,7 @@ export const SearchBar = ({ onSearch, compact = false }) => {
     setLocalFilters((prev) => ({ ...prev, [field]: value }));
   };
 
-  // Compact mode (small top bar, only location + search button)
+  // Compact mode
   if (compact) {
     return (
       <div className="bg-white rounded-lg shadow-lg p-4">
@@ -44,7 +52,7 @@ export const SearchBar = ({ onSearch, compact = false }) => {
     );
   }
 
-  // Full search bar
+  // Full mode
   return (
     <div className="bg-white rounded-xl shadow-xl p-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -116,7 +124,7 @@ export const SearchBar = ({ onSearch, compact = false }) => {
       <div className="mt-6">
         <button
           onClick={handleSearch}
-          className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center space-x-2"
+          className="w-full bg-primary text-pink-500 rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center space-x-2"
         >
           <Search className="h-5 w-5" />
           <span>Search Hotels</span>

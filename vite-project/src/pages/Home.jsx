@@ -68,133 +68,167 @@ export const Home = ({ onNavigate }) => {
       </section>
 
       {/* Popular Destinations */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center mb-10">
-            <div>
-              <h2 className="text-3xl font-bold">Popular Destinations 🌍</h2>
-              <p className="text-gray-600">
-                Explore the beauty of Nepal’s top places
+<section className="py-16 bg-gradient-to-r from-pink-50 via-purple-50 to-indigo-50">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="flex justify-between items-center mb-10">
+      <div>
+        <h2 className="text-3xl font-bold text-gray-900">
+          Popular Destinations 🌍
+        </h2>
+        <p className="text-gray-600">
+          Explore the beauty of Nepal’s top places
+        </p>
+      </div>
+
+      <button
+        onClick={() => onNavigate("hotels")}
+        className="text-pink-600 hover:text-pink-500 flex items-center space-x-2 font-semibold"
+      >
+        <span>View All</span>
+        <ArrowRight className="h-5 w-5" />
+      </button>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+      {destinations.map((destination) => (
+        <div
+          key={destination.id}
+          onClick={() => onNavigate("hotels")}
+          className="group cursor-pointer"
+        >
+          <div className="relative h-52 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+            
+            <ImageWithFallback
+              src={destination.image}
+              alt={destination.name}
+              className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+
+            <div className="absolute bottom-4 left-4 text-white">
+              <h3 className="text-xl font-bold">{destination.name}</h3>
+              <p className="text-sm opacity-90">
+                {destination.hotelCount} hotels
               </p>
             </div>
 
-            <button
-              onClick={() => onNavigate("hotels")}
-              className="text-pink-600 hover:text-pink-500 flex items-center space-x-2 font-semibold"
-            >
-              <span>View All</span>
-              <ArrowRight className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {destinations.map((destination) => (
-              <div
-                key={destination.id}
-                onClick={() => onNavigate("hotels")}
-                className="group cursor-pointer"
-              >
-                <div className="relative h-52 rounded-2xl overflow-hidden shadow-lg">
-                  <ImageWithFallback
-                    src={destination.image}
-                    alt={destination.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-bold">{destination.name}</h3>
-                    <p className="text-sm opacity-90">
-                      {destination.hotelCount} hotels
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
-      {/* Featured Hotels */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center mb-10">
-            <div>
-              <h2 className="text-3xl font-bold">Featured Hotels ⭐</h2>
-              <p className="text-gray-600">
-                Handpicked stays for your perfect trip
-              </p>
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredHotels.map((hotel) => (
-              <div className="hover:scale-105 transition duration-300">
-                <HotelCard
-                  key={hotel.id}
-                  hotel={hotel}
-                  onSelect={handleHotelSelect}
-                />
-              </div>
-            ))}
-          </div>
+     {/* Featured Hotels */}
+<section className="py-16 bg-gradient-to-b from-pink-100 via-pink-50 to-white">
+  <div className="max-w-7xl mx-auto px-6">
+
+    {/* Heading */}
+    <div className="flex justify-between items-center mb-10">
+      <div>
+        <h2 className="text-3xl font-bold text-gray-900">
+          Featured Hotels ⭐
+        </h2>
+        <p className="text-gray-700">
+          Handpicked stays for your perfect trip
+        </p>
+      </div>
+    </div>
+
+    {/* Hotel Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {featuredHotels.map((hotel) => (
+        <div
+          key={hotel.id}
+          className="hover:scale-105 transition duration-300"
+        >
+          <HotelCard
+            hotel={hotel}
+            onSelect={handleHotelSelect}
+          />
         </div>
-      </section>
+      ))}
+    </div>
+
+  </div>
+</section>
+
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-gradient-to-r from-purple-600 to-pink-500 text-white">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            What Travelers Say ❤️
-          </h2>
+<section className="py-16 bg-gradient-to-r from-sky-300 via-blue-300 to-indigo-500 text-white">
+  <div className="max-w-6xl mx-auto px-6 text-center">
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white/10 p-6 rounded-xl">
-              <p>
-                “Best booking experience! होटलहरू धेरै राम्रो छन्.”
-              </p>
-              <h4 className="mt-3 font-bold">- Suman, Kathmandu</h4>
-            </div>
+    {/* Heading */}
+    <h2 className="text-3xl font-bold mb-6">
+      What Travelers Say ❤️
+    </h2>
 
-            <div className="bg-white/10 p-6 rounded-xl">
-              <p>
-                “Pokhara trip was amazing thanks to these hotel suggestions!”
-              </p>
-              <h4 className="mt-3 font-bold">- Priya, India</h4>
-            </div>
+    {/* Testimonials Cards */}
+    <div className="grid md:grid-cols-3 gap-6">
 
-            <div className="bg-white/10 p-6 rounded-xl">
-              <p>
-                “Affordable + luxury hotels in Nepal. Highly recommended!”
-              </p>
-              <h4 className="mt-3 font-bold">- John, USA</h4>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="bg-white/15 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:scale-105 transition">
+        <p>
+          “Best booking experience! होटलहरू धेरै राम्रो छन्.”
+        </p>
+        <h4 className="mt-3 font-bold">- Suman, Kathmandu</h4>
+      </div>
 
-      {/* Newsletter */}
-      <section className="py-14 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-2xl font-bold mb-3">
-            Get Exclusive Deals 📩
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Subscribe for special discounts & travel updates.
-          </p>
+      <div className="bg-white/15 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:scale-105 transition">
+        <p>
+          “Pokhara trip was amazing thanks to these hotel suggestions!”
+        </p>
+        <h4 className="mt-3 font-bold">- Priya, India</h4>
+      </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="px-4 py-3 rounded-lg border w-full sm:w-2/3"
-            />
-            <button className="px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white rounded-lg">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </section>
+      <div className="bg-white/15 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:scale-105 transition">
+        <p>
+          “Affordable + luxury hotels in Nepal. Highly recommended!”
+        </p>
+        <h4 className="mt-3 font-bold">- John, USA</h4>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+     {/* Newsletter */}
+<section className="py-14 bg-gradient-to-b from-pink-100 via-pink-50 to-white">
+  <div className="max-w-4xl mx-auto text-center px-6">
+
+    {/* Heading */}
+    <h2 className="text-2xl font-bold mb-3 text-gray-900">
+      Get Exclusive Deals 📩
+    </h2>
+
+    <p className="text-gray-700 mb-6">
+      Subscribe for special discounts & travel updates.
+    </p>
+
+    {/* Input + Button */}
+    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+
+      <input
+        type="email"
+        placeholder="Enter your email"
+        className="px-4 py-3 rounded-xl border border-pink-200 w-full sm:w-2/3 
+        focus:ring-2 focus:ring-pink-400 outline-none shadow-sm"
+      />
+
+      <button
+        className="px-6 py-3 bg-pink-500 hover:bg-pink-600 
+        text-white rounded-xl shadow-md hover:shadow-lg transition"
+      >
+        Subscribe
+      </button>
+
+    </div>
+
+  </div>
+</section>
+
     </div>
   );
 };

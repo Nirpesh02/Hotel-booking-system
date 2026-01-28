@@ -15,7 +15,7 @@ import {
 
 export const Footer = () => {
   return (
-    <footer className="mt-auto bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-600 text-white">
+    <footer className="mt-auto bg-gradient-to-r from-purple-400 via-pink-400 to-pink-200 text-gray-100 shadow-inner">
       <div className="max-w-7xl mx-auto px-6 py-14">
 
         {/* Top Grid */}

@@ -18,6 +18,7 @@ import { calculateNights } from "../utils/helpers";
 import { useBooking } from "../context/BookingContext";
 import { ImageWithFallback } from "../components/ImageWithFallback";
 
+
 export const HotelDetail = ({ hotelId, onNavigate }) => {
   const hotel = hotels.find((h) => h.id === hotelId);
 
@@ -221,6 +222,7 @@ export const HotelDetail = ({ hotelId, onNavigate }) => {
             <BookingForm
               hotel={hotel}
               onBookingComplete={handleBookingComplete}
+              onLoginRequired={() => navigate('/login')}
             />
           </div>
 
